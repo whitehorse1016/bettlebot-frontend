@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthRegisterView from "./views/auth/register";
 import ProtectedRoute from "./utills/adminCheck"; // Import the ProtectedRoute component
-import 'react-tooltip/dist/react-tooltip.css'
+import "react-tooltip/dist/react-tooltip.css";
 import "react-responsive-modal/styles.css";
 
 import "./App.css";
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/admin",
+    path: "/adminpanel",
     element: (
       <ProtectedRoute>
         <AdminView />
