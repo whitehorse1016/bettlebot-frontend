@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'aquire';
+    src: url('./assets/fonts/AquireBold-8Ma60.otf') format('opentype');
+}  
+
+.customModal {
+    background: #191919;
+    max-width: 380px;
+    width: 100%;
+    border-radius: 8px;
+  }
