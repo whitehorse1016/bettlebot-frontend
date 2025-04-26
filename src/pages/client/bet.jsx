@@ -10,7 +10,7 @@ import { UserContext } from "../../context/UserContext";
 import { getBetByBetId } from "../../services/bet.service";
 import LiveStream from "../../components/LiveStream";
 import { toast } from "react-toastify";
-import defaultvideo from "../../assets/videos/1.mp4";
+
 const BetDashboard = () => {
   const { currentBet, betRefresh } = useBets();
   const { userid, checkWinner, setCheckWinner } = useContext(UserContext);
