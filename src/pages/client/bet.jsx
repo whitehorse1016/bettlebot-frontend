@@ -10,12 +10,12 @@ import { UserContext } from "../../context/UserContext";
 import { getBetByBetId } from "../../services/bet.service";
 import LiveStream from "../../components/LiveStream";
 import { toast } from "react-toastify";
-
+import defaultvideo from "../../assets/videos/1.mp4";
 const BetDashboard = () => {
   const { currentBet, betRefresh } = useBets();
   const { userid, checkWinner, setCheckWinner } = useContext(UserContext);
   const [streamUrl, setStreamUrl] = useState(
-    "https://flipfit-cdn.akamaized.net/flip_hls/661f570aab9d840019942b80-473e0b/video_h1.m3u8"
+    "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
   );
   const [notifiedStatus, setNotifiedStatus] = useState(null);
 
@@ -36,11 +36,13 @@ const BetDashboard = () => {
             setCheckWinner({
               winner: true,
               amount: (
-                (item.amount *
-                  (currentBet.teams.filter(
-                    (item) => item._id == currentBet.winningTeamId
-                  )[0].multiplier * 99 / 100
-                  )).toFixed(4)),
+                item.amount *
+                ((currentBet.teams.filter(
+                  (item) => item._id == currentBet.winningTeamId
+                )[0].multiplier *
+                  99) /
+                  100)
+              ).toFixed(4),
             });
           } else {
             setCheckWinner({
@@ -53,7 +55,6 @@ const BetDashboard = () => {
       });
     }
   };
-
 
   useEffect(() => {
     document.title = "CockFights - Bets";
@@ -105,13 +106,12 @@ const BetDashboard = () => {
     }
   }, [currentBet, checkWinner, userid, notifiedStatus]);
 
-
   return (
     <BetWrapper>
       <BetContainer>
         <TopBet />
         {windowSize.width < 950 && (
-          <LiveStream streamUrl={streamUrl} betRefresh={betRefresh} />
+          <LiveStream videoSrc={streamUrl} betRefresh={betRefresh} />
         )}
         <BetMainGroup>
           {windowSize.width > 1270 && <MatchHistory />}
@@ -149,16 +149,16 @@ const BetDashboard = () => {
               </BetMainGroup>
               <Status>
                 {currentBet &&
-                  userid &&
-                  currentBet?.status == "finished" &&
-                  checkWinner &&
-                  checkWinner?.amount > 0
+                userid &&
+                currentBet?.status == "finished" &&
+                checkWinner &&
+                checkWinner?.amount > 0
                   ? checkWinner?.winner == false
                     ? "You lost " + checkWinner.amount + " SOL"
                     : "You Won " + checkWinner.amount + " SOL"
                   : currentBet?.status
-                    ? "Bets are " + currentBet?.status
-                    : ""}
+                  ? "Bets are " + currentBet?.status
+                  : ""}
               </Status>
             </BetPlaceGroup>
           )}
@@ -181,10 +181,10 @@ const BetDashboard = () => {
             {windowSize.width > 950 && (
               <Status>
                 {currentBet &&
-                  userid &&
-                  currentBet?.status == "finished" &&
-                  checkWinner &&
-                  checkWinner.amount > 0
+                userid &&
+                currentBet?.status == "finished" &&
+                checkWinner &&
+                checkWinner.amount > 0
                   ? checkWinner.winner == false
                     ? "You lost " + checkWinner.amount + " SOL"
                     : "You Won " + checkWinner.amount + " SOL"
@@ -203,10 +203,10 @@ const BetDashboard = () => {
         {windowSize.width < 950 && (
           <Status>
             {currentBet &&
-              userid &&
-              currentBet?.status == "finished" &&
-              checkWinner &&
-              checkWinner.amount > 0
+            userid &&
+            currentBet?.status == "finished" &&
+            checkWinner &&
+            checkWinner.amount > 0
               ? checkWinner.winner == false
                 ? "You lost " + checkWinner.amount + " SOL"
                 : "You Won " + checkWinner.amount + " SOL"

@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from "react";
-import Hls from "hls.js";
 import styled from "styled-components";
 import { FaPlay, FaPause } from "react-icons/fa";
 import {
@@ -8,39 +7,45 @@ import {
   IoVolumeMedium,
   IoVolumeMute,
 } from "react-icons/io5";
-import { MdFullscreen } from "react-icons/md";
+import { MdFullscreen, MdFullscreenExit } from "react-icons/md";
 import LiveStreamImg from "../assets/images/cockevent1.png";
 
-const LiveStream = ({ streamUrl, betRefresh }) => {
+const LiveStream = ({ streamUrl }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [volumeIcon, setVolumeIcon] = useState(1);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (Hls.isSupported() && streamUrl) {
-      const hls = new Hls();
-      hls.loadSource(streamUrl);
-      hls.attachMedia(videoRef.current);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        videoRef.current.play();
-        setIsPlaying(true);
-      });
-
-      return () => {
-        hls.destroy();
-      };
-    } else if (videoRef.current.canPlayType("application/vnd.apple.mpegurl")) {
-      videoRef.current.src = streamUrl;
-      videoRef.current.addEventListener("loadedmetadata", () => {
-        videoRef.current.play();
-        setIsPlaying(true);
-      });
+    const video = videoRef.current;
+    if (!video) return;
+    video.src = streamUrl;
+    video.muted = true;
+    video.volume = volume;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => setIsPlaying(true))
+        .catch((error) => {
+          console.warn("Autoplay prevented:", error);
+        });
     }
-  }, [streamUrl, betRefresh]);
+    return () => {
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    };
+  }, [streamUrl]);
 
   const togglePlay = () => {
-    if (videoRef.current.paused) {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused || videoRef.current.ended) {
+      if (videoRef.current.muted && !isPlaying) {
+        videoRef.current.muted = false;
+        updateVolumeIcon(volume);
+      }
       videoRef.current.play();
       setIsPlaying(true);
     } else {
@@ -53,70 +58,60 @@ const LiveStream = ({ streamUrl, betRefresh }) => {
     const newVolume = e.target.value / 100;
     setVolume(newVolume);
     videoRef.current.volume = newVolume;
-    // Set volume icon based on volume level
+    updateVolumeIcon(newVolume);
+  };
+
+  const updateVolumeIcon = (newVolume) => {
     if (newVolume === 0) setVolumeIcon(3);
     else if (newVolume < 0.3) setVolumeIcon(0);
     else if (newVolume < 0.7) setVolumeIcon(1);
     else setVolumeIcon(2);
   };
 
-  const toggleFullScreen = () => {
-    if (videoRef.current.requestFullscreen)
-      videoRef.current.requestFullscreen();
-    else if (videoRef.current.webkitRequestFullscreen)
-      videoRef.current.webkitRequestFullscreen();
-    else if (videoRef.current.mozRequestFullScreen)
-      videoRef.current.mozRequestFullScreen();
-    else if (videoRef.current.msRequestFullscreen)
-      videoRef.current.msRequestFullscreen();
-  };
-
   const handleVolumeButtonClick = () => {
     let newVolume = 0;
-    if (volume === 0) {
-      newVolume = 0.3;  // Low volume
-    } else if (volume < 0.3) {
-      newVolume = 0.7;  // Medium volume
-    } else if (volume < 0.7) {
-      newVolume = 1;    // High volume
-    } else {
-      newVolume = 0;    // Mute
-    }
-
+    if (volume === 0) newVolume = 0.3;
+    else if (volume < 0.3) newVolume = 0.7;
+    else if (volume < 0.7) newVolume = 1;
+    else newVolume = 0;
     setVolume(newVolume);
     videoRef.current.volume = newVolume;
-
-    // Update the volume icon based on the new volume level
     updateVolumeIcon(newVolume);
   };
 
-  const updateVolumeIcon = (newVolume) => {
-    if (newVolume === 0) {
-      setVolumeIcon(3);  // Mute icon
-    } else if (newVolume < 0.3) {
-      setVolumeIcon(0);  // Low volume icon
-    } else if (newVolume < 0.7) {
-      setVolumeIcon(1);  // Medium volume icon
+  const toggleFullScreen = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    const container = video.parentElement;
+    if (!document.fullscreenElement) {
+      container.requestFullscreen?.().catch((err) => {
+        console.error("Fullscreen error:", err);
+      });
+      setIsFullscreen(true);
     } else {
-      setVolumeIcon(2);  // High volume icon
+      document.exitFullscreen?.().catch((err) => {
+        console.error("Exit fullscreen error:", err);
+      });
+      setIsFullscreen(false);
     }
   };
-
-
-  useEffect(() => {
-    videoRef.current.volume = volume;
-  }, [volume]);
 
   return (
     <VideoContainer>
       <LiveStreamVideo
         ref={videoRef}
-        autoPlay={!!streamUrl}
-        muted={!isPlaying}
+        autoPlay
+        muted
+        playsInline
         poster={LiveStreamImg}
-        loop
-        onError={() => console.error("Failed to load video")}
+        onEnded={() => setIsPlaying(false)}
+        onError={() => setError(true)}
+        controls={false}
+        disablePictureInPicture
+        controlsList="nodownload"
       />
+      {/* {console.log(error, "error")} */}
+      {error && <ErrorMessage>Unable to load video stream.</ErrorMessage>}
       <LiveLabel>LIVE</LiveLabel>
       <ControlOverlay>
         <LeftControl>
@@ -138,7 +133,7 @@ const LiveStream = ({ streamUrl, betRefresh }) => {
           />
         </LeftControl>
         <ControlButton2 onClick={toggleFullScreen}>
-          <MdFullscreen />
+          {isFullscreen ? <MdFullscreenExit /> : <MdFullscreen />}
         </ControlButton2>
       </ControlOverlay>
     </VideoContainer>
@@ -153,6 +148,7 @@ const VideoContainer = styled.div`
   border-radius: 8px;
   user-select: none;
 `;
+
 const LiveStreamVideo = styled.video`
   width: 100%;
   height: 100%;
@@ -199,11 +195,13 @@ const ControlButton = styled.div`
   justify-content: center;
   cursor: pointer;
 `;
+
 const ControlButton2 = styled(ControlButton)`
   font-size: 28px;
   width: 28px;
   height: 28px;
 `;
+
 const ProgressBar = styled.input`
   width: 112px;
   height: 4px;
@@ -220,6 +218,18 @@ const ProgressBar = styled.input`
     border: 2px solid #980312;
     cursor: pointer;
   }
+`;
+
+const ErrorMessage = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(20, 20, 20, 0.8);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 14px;
 `;
 
 export default LiveStream;
