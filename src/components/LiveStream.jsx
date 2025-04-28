@@ -13,8 +13,8 @@ import LiveStreamImg from "../assets/images/cockevent1.png";
 const LiveStream = ({ streamUrl }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.5);
-  const [volumeIcon, setVolumeIcon] = useState(1);
+  const [volume, setVolume] = useState(0); // Initialize with 0
+  const [volumeIcon, setVolumeIcon] = useState(3); // Initialize with mute icon
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [error, setError] = useState(false);
 
@@ -22,7 +22,7 @@ const LiveStream = ({ streamUrl }) => {
     const video = videoRef.current;
     if (!video) return;
     video.src = streamUrl;
-    video.muted = true;
+    video.muted = true; // Mute initially to avoid autoplay issues
     video.volume = volume;
     const playPromise = video.play();
     if (playPromise !== undefined) {
@@ -62,10 +62,10 @@ const LiveStream = ({ streamUrl }) => {
   };
 
   const updateVolumeIcon = (newVolume) => {
-    if (newVolume === 0) setVolumeIcon(3);
-    else if (newVolume < 0.3) setVolumeIcon(0);
-    else if (newVolume < 0.7) setVolumeIcon(1);
-    else setVolumeIcon(2);
+    if (newVolume === 0) setVolumeIcon(3); // Mute icon
+    else if (newVolume < 0.3) setVolumeIcon(0); // Low volume
+    else if (newVolume < 0.7) setVolumeIcon(1); // Medium volume
+    else setVolumeIcon(2); // High volume
   };
 
   const handleVolumeButtonClick = () => {
@@ -101,7 +101,7 @@ const LiveStream = ({ streamUrl }) => {
       <LiveStreamVideo
         ref={videoRef}
         autoPlay
-        muted
+        muted={volume === 0} // Muted when volume is 0
         playsInline
         poster={LiveStreamImg}
         onEnded={() => setIsPlaying(false)}
@@ -110,7 +110,6 @@ const LiveStream = ({ streamUrl }) => {
         disablePictureInPicture
         controlsList="nodownload"
       />
-      {/* {console.log(error, "error")} */}
       {error && <ErrorMessage>Unable to load video stream.</ErrorMessage>}
       <LiveLabel>LIVE</LiveLabel>
       <ControlOverlay>

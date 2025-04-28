@@ -62,7 +62,7 @@ const BetDashboard = () => {
 
   useEffect(() => {
     if (currentBet && currentBet.liveUrl != "" && currentBet.liveUrl) {
-      setStreamUrl(currentBet.liveUrl);
+      setStreamUrl(currentBet?.liveUrl);
     }
     if (
       currentBet &&
