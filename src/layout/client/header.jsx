@@ -21,7 +21,7 @@ const Header = () => {
 
     clipboardCopy(text)
       .then(() => {
-        toast.info("The public key has been successfully copied")
+        toast.info("The public key has been successfully copied");
         console.log("Text copied to clipboard");
       })
       .catch((err) => {
@@ -54,16 +54,16 @@ const Header = () => {
                 bgcolor="#980312"
                 color="white"
                 width="110px"
-                text={`${totalbalance.toString().length > 3 ? totalbalance.toFixed(3) : totalbalance} SOL`}
+                text={`${
+                  totalbalance.toString().length > 3
+                    ? totalbalance.toFixed(3)
+                    : totalbalance
+                } SOL`}
                 fweight="500"
               />
             </MobileBalanceWrapper>
             <CopyIconWrapper onClick={() => handleCopy(publicAddress)}>
-              {flag === false ? (
-                <IoCopy />
-              ) : (
-                <TbCopyCheckFilled />
-              )}
+              {flag === false ? <IoCopy /> : <TbCopyCheckFilled />}
             </CopyIconWrapper>
           </WalletButtonWrapper>
         ) : (
@@ -109,6 +109,7 @@ const HeaderContainer = styled.div`
 const Logo = styled.img`
   max-width: 100%;
   height: auto;
+  width: 70px;
   cursor: pointer;
 `;
 

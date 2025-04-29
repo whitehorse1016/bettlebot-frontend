@@ -5,41 +5,50 @@ import StoryBg from "../../assets/images/storybg.png";
 import { useEffect, useState } from "react";
 import { getCockData } from "../../services/cock.service";
 import StoryCardBG from "../../assets/images/storycard.png";
-import StoryCardCock from "../../assets/images/storycardcock.png";
+import StoryCardCock0 from "../../assets/images/white.png";
+import StoryCardCock1 from "../../assets/images/yellow.png";
+import StoryCardCock2 from "../../assets/images/red.png";
+import StoryCardCock3 from "../../assets/images/blue.png";
+
+const imagedata = [
+  StoryCardCock0,
+  StoryCardCock2,
+  StoryCardCock3,
+  StoryCardCock1,
+];
 
 const StoryBox = () => {
-
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
 
-  const [cockdata, setCockData] = useState([])
-  const [selectedCockData, setSelectedCockData] = useState()
+  const [cockdata, setCockData] = useState([]);
+  const [selectedCockData, setSelectedCockData] = useState();
 
   const getCock = async () => {
     try {
       const data = await getCockData();
+      console.log(data);
       if (data?.cock?.length > 0) {
-        const combinedData = data.cock.map(item => ({
+        const combinedData = data.cock.map((item, key) => ({
           ...item,
           bg: StoryCardBG,
-          img: StoryCardCock,
+          img: imagedata[key],
         }));
-        setCockData(combinedData)
-        setSelectedCockData(combinedData[0])
+        setCockData(combinedData);
+        setSelectedCockData(combinedData[0]);
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
-    getCock()
-  }, [])
+    getCock();
+  }, []);
 
-  useEffect(() => {
-  }, [selectedCockData])
+  useEffect(() => {}, [selectedCockData]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -55,22 +64,18 @@ const StoryBox = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-
   return (
     <StoryWrapper>
       <Background src={StoryBg} />
-      <StoryImage src={StoryImg} />
+      <StoryImage src={selectedCockData && selectedCockData.img} />
       <StoryMobileWrapper>
         <StoryContentWrapper>
           <StoryContentButton>Fighter Story</StoryContentButton>
-          <StoryContentTitle>{selectedCockData && selectedCockData?.cockname}</StoryContentTitle>
+          <StoryContentTitle>
+            {selectedCockData && selectedCockData?.cockname}
+          </StoryContentTitle>
           <StoryContentText>
-            The ultimate betting experience has arrived. Back your fighters,
-            place your bets, and win big with the power of $Cock! Whether you're
-            a casual fan or a seasoned bettor, this is your chance to engage
-            like never before. Set up your wallet, join the live streams, and
-            get ready to take your stake in the fight. It’s time to let loose,
-            bet with confidence, and Unleash the $Cock!
+            {selectedCockData && selectedCockData?.description}
           </StoryContentText>
         </StoryContentWrapper>
         <StoryStats>
@@ -78,12 +83,16 @@ const StoryBox = () => {
           <StoryStatsBar>
             <StoryStatsBarWrapper>
               <StoryStatsBarText>Win : </StoryStatsBarText>
-              <StoryStatsBarText>&nbsp;{selectedCockData && selectedCockData?.win}</StoryStatsBarText>
+              <StoryStatsBarText>
+                &nbsp;{selectedCockData && selectedCockData?.win}
+              </StoryStatsBarText>
             </StoryStatsBarWrapper>
             <StoryStatsBarWrapper>
               <StoryStatsBarText>lose : </StoryStatsBarText>
               <StoryStatsBarHr />
-              <StoryStatsBarText>&nbsp;{selectedCockData && selectedCockData?.lose}</StoryStatsBarText>
+              <StoryStatsBarText>
+                &nbsp;{selectedCockData && selectedCockData?.lose}
+              </StoryStatsBarText>
             </StoryStatsBarWrapper>
           </StoryStatsBar>
         </StoryStats>
@@ -92,14 +101,11 @@ const StoryBox = () => {
         <>
           <StoryContentWrapper>
             <StoryContentButton>Fighter Story</StoryContentButton>
-            <StoryContentTitle>{selectedCockData && selectedCockData?.cockname}</StoryContentTitle>
+            <StoryContentTitle>
+              {selectedCockData && selectedCockData?.cockname}
+            </StoryContentTitle>
             <StoryContentText>
-              The ultimate betting experience has arrived. Back your fighters,
-              place your bets, and win big with the power of $Cock! Whether
-              you're a casual fan or a seasoned bettor, this is your chance to
-              engage like never before. Set up your wallet, join the live
-              streams, and get ready to take your stake in the fight. It’s time
-              to let loose, bet with confidence, and Unleash the $Cock!
+              {selectedCockData && selectedCockData?.description}
             </StoryContentText>
           </StoryContentWrapper>
           <StoryStats>
@@ -108,12 +114,16 @@ const StoryBox = () => {
               <StoryStatsBarWrapper>
                 <StoryStatsBarText>W</StoryStatsBarText>
                 <StoryStatsBarHr />
-                <StoryStatsBarText>{selectedCockData && selectedCockData?.win}</StoryStatsBarText>
+                <StoryStatsBarText>
+                  {selectedCockData && selectedCockData?.win}
+                </StoryStatsBarText>
               </StoryStatsBarWrapper>
               <StoryStatsBarWrapper>
                 <StoryStatsBarText>l</StoryStatsBarText>
                 <StoryStatsBarHr />
-                <StoryStatsBarText>{selectedCockData && selectedCockData?.lose}</StoryStatsBarText>
+                <StoryStatsBarText>
+                  {selectedCockData && selectedCockData?.lose}
+                </StoryStatsBarText>
               </StoryStatsBarWrapper>
             </StoryStatsBar>
           </StoryStats>
@@ -125,10 +135,10 @@ const StoryBox = () => {
             windowSize.width > 1430
               ? 4
               : windowSize.width > 1025
-                ? 3
-                : windowSize.width > 545
-                  ? 2
-                  : 1
+              ? 3
+              : windowSize.width > 545
+              ? 2
+              : 1
           }
           cardsData={cockdata}
           setSelectedCockData={setSelectedCockData}
@@ -169,10 +179,10 @@ const StoryWrapper = styled.div`
 `;
 
 const StoryImage = styled.img`
-  max-width: 290px;
+  max-width: 420px;
   height: 420px;
   @media screen and (max-width: 1023px) {
-    max-width: 200px;
+    max-width: 300px;
     height: 300px;
   }
 `;
@@ -242,11 +252,11 @@ const StoryStatsBarWrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding: 8px;
-  width:40px;
+  width: 40px;
   @media screen and (max-width: 1270px) {
     flex-direction: row;
     align-items: flex-start;
-    width:140px;
+    width: 140px;
   }
 `;
 const StoryStatsBarText = styled.div`

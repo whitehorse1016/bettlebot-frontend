@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const StoryCard = ({ bg, img, name, age, weight, onClick }) => {
+const StoryCard = ({ bg, img, name, focus, weapon, onClick }) => {
   return (
     <StoryCardWrapper url={bg} onClick={onClick}>
       <StoryCardImg src={img} />
@@ -8,13 +8,13 @@ const StoryCard = ({ bg, img, name, age, weight, onClick }) => {
         <StoryCardTextBoxTitleHr />
         <StoryCardTextBoxWrapper>
           <StoryCardTextBoxContainer>
-            <StoryCardTextBoxText>Age</StoryCardTextBoxText>
-            <StoryCardTextBoxTextYellow>{age}</StoryCardTextBoxTextYellow>
+            {/* <StoryCardTextBoxText>Age</StoryCardTextBoxText> */}
+            <StoryCardTextBoxTextYellow>{focus}</StoryCardTextBoxTextYellow>
           </StoryCardTextBoxContainer>
           <StoryCardTextBoxTitleHr2 />
           <StoryCardTextBoxContainer>
-            <StoryCardTextBoxText>Weight</StoryCardTextBoxText>
-            <StoryCardTextBoxTextYellow>{weight}</StoryCardTextBoxTextYellow>
+            {/* <StoryCardTextBoxText>Weight</StoryCardTextBoxText> */}
+            <StoryCardTextBoxTextYellow>{weapon}</StoryCardTextBoxTextYellow>
           </StoryCardTextBoxContainer>
         </StoryCardTextBoxWrapper>
       </StoryCardTextBox>
@@ -40,7 +40,7 @@ const StoryCardWrapper = styled.div`
 `;
 
 const StoryCardImg = styled.img`
-  width: 80px;
+  width: 115px;
   margin-top: 10px;
 `;
 

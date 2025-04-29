@@ -3,6 +3,8 @@ import UpImg from "../../assets/images/up.png";
 import DownImg from "../../assets/images/down.png";
 import CardImg1 from "../../assets/images/cockevent1.png";
 import CardImg2 from "../../assets/images/cockevent2.png";
+import CardImg3 from "../../assets/images/cockevent3.png";
+import CardImg4 from "../../assets/images/cockevent4.png";
 import Carousel from "./Slider";
 import Slider from "./SliderMobile";
 
@@ -18,23 +20,13 @@ const data = [
     text: "The arena is meticulously crafted for the intensity of the battle.",
   },
   {
-    img: CardImg1,
+    img: CardImg3,
     title: "The Fighting Arena of the Cocks 3",
     text: "The arena is meticulously crafted for the intensity of the battle.",
   },
   {
-    img: CardImg2,
+    img: CardImg4,
     title: "The Fighting Arena of the Cocks 4",
-    text: "The arena is meticulously crafted for the intensity of the battle.",
-  },
-  {
-    img: CardImg1,
-    title: "The Fighting Arena of the Cocks 5",
-    text: "The arena is meticulously crafted for the intensity of the battle.",
-  },
-  {
-    img: CardImg1,
-    title: "The Fighting Arena of the Cocks 6",
     text: "The arena is meticulously crafted for the intensity of the battle.",
   },
 ];

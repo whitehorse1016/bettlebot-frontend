@@ -37,7 +37,6 @@ const Slider = ({ itemsToShow, cardsData, setSelectedCockData }) => {
     });
   };
 
-
   const displayedCards = [];
   for (let i = 0; i < itemsToShow; i++) {
     displayedCards.push(
@@ -54,21 +53,20 @@ const Slider = ({ itemsToShow, cardsData, setSelectedCockData }) => {
             key={index}
             bg={
               currentIndex ===
-                (currentViewStartIndex + index) % cardsData?.length
+              (currentViewStartIndex + index) % cardsData?.length
                 ? StoryCardRed
                 : card?.bg
             }
             img={card?.img}
             name={card?.cockname}
-            age={card?.age}
-            weight={card?.weight}
+            focus={card?.focus}
+            weapon={card?.weapon}
             onClick={() => {
               setCurrentIndex(
                 (currentViewStartIndex + index) % cardsData?.length
               );
               setSelectedCockData(card);
-            }
-            }
+            }}
           />
         ))}
       </CardContainer>
