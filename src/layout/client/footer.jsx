@@ -56,6 +56,7 @@ const FooterText = styled.div`
 const FooterBanner = styled.img`
   max-width: 100%;
   height: auto;
+  width: 100px;
 `;
 
 export default Footer;

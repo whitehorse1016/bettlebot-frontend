@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import StorySlider from "./Slider";
-import StoryImg from "../../assets/images/storycock.png";
 import StoryBg from "../../assets/images/storybg.png";
 import { useEffect, useState } from "react";
 import { getCockData } from "../../services/cock.service";
