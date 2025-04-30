@@ -11,23 +11,33 @@ import Slider from "./SliderMobile";
 const data = [
   {
     img: CardImg1,
-    title: "The Fighting Arena of the Cocks 1 ",
-    text: "The arena is meticulously crafted for the intensity of the battle.",
+    title: "Inferno Dojo $BETTLE Arena",
+    text: "A scorched battlefield where ancient architecture meets molten mayhem. Robots battle through fire, falling beams, and a fury of sparks ",
   },
   {
     img: CardImg2,
-    title: "The Fighting Arena of the Cocks 2 ",
-    text: "The arena is meticulously crafted for the intensity of the battle.",
+    title: "Shrine of Shrapnel $BETTLE Arena ",
+    text: "A sacred arena turned savage, where stone floors echo with metal-on-metal chaos. Tradition ends when the first blade spins.",
   },
   {
     img: CardImg3,
-    title: "The Fighting Arena of the Cocks 3",
-    text: "The arena is meticulously crafted for the intensity of the battle.",
+    title: "The Mech Pit $BETTLE Arena",
+    text: "A classic square combat zone built for pure, high-stakes robot brawling. No gimmicks — just steel, sparks, and skill under the lights.",
   },
   {
     img: CardImg4,
-    title: "The Fighting Arena of the Cocks 4",
-    text: "The arena is meticulously crafted for the intensity of the battle.",
+    title: "Glacier Clash $BETTLE Arena",
+    text: "Set in the icy shallows of a mountain lake, this arena pushes bots to adapt or freeze. Every hit sends waves — and maybe parts — flying.",
+  },
+  {
+    img: CardImg1,
+    title: "The Mech Pit $BETTLE Arena",
+    text: "A classic square combat zone built for pure, high-stakes robot brawling. No gimmicks — just steel, sparks, and skill under the lights.",
+  },
+  {
+    img: CardImg2,
+    title: "The Mech Pit $BETTLE Arena",
+    text: "A classic square combat zone built for pure, high-stakes robot brawling. No gimmicks — just steel, sparks, and skill under the lights.",
   },
 ];
 

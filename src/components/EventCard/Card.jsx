@@ -9,7 +9,7 @@ const Card = (props) => {
       <CardImage cardimg={props.cardImg}>
         <CardRemoveImage src={CardRemovedBg} />
       </CardImage>
-      <CardTitle>{props.cardTitle}</CardTitle>
+      <CardTitle>{props.cardTitle} </CardTitle>
       <CardText>{props.cardText}</CardText>
     </ImageCard>
   );
@@ -26,8 +26,9 @@ const ImageCard = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  gap: 10px;
+  gap: 6px;
 `;
+
 const CardImage = styled.div`
   width: 300px;
   height: 220px;
@@ -50,6 +51,7 @@ const CardTitle = styled.div`
 `;
 const CardText = styled.div`
   padding: 0 20px;
+  font-size: 12px;
 `;
 
 export default Card;

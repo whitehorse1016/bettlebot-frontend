@@ -12,7 +12,7 @@ const Footer = () => {
           <FooterText>Terms of Use</FooterText>
         </FooterItem>
         <FooterItem>
-          <FooterText>© COCK FIGHTS 2024</FooterText>
+          <FooterText>© BETTLEBOTS 2025</FooterText>
         </FooterItem>
       </FooterContainer>
     </FooterWrapper>
