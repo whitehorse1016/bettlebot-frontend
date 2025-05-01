@@ -1,45 +1,39 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Person1 from "../../assets/images/person1.png";
 import Left_Ico from "../../assets/images/left_ico.png";
 import Right_Ico from "../../assets/images/right_ico.png";
 import PersonCard from "./PersonCard";
 
 const cardsData = [
   {
-    image: Person1,
-    title: "Strategic Master",
-    text: "A mind like no other, capable of devising unmatched strategies.",
+    image:
+      "https://battlebots.com/wp-content/uploads/2018/04/Tombstone-Team-S2018.jpg",
+    title: "🔥 Ray Billings – Tombstone",
+    text: "Ray is known for raw aggression and maximum-damage tactics. Tombstone reflects his philosophy—no mercy.",
   },
   {
-    image: Person1,
-    title: "Strategic Master 1",
-    text: "A mind like no other, capable of devising unmatched strategies.",
+    image:
+      "https://battlebots.com/wp-content/uploads/2022/11/BB2022-lockjaw-team.jpg",
+    title: "🛡️ Donald Hutson – Lock-Jaw",
+    text: "A veteran strategist with unmatched adaptability. His bot Lock-Jaw is as versatile as his mind.",
   },
   {
-    image: Person1,
-    title: "Strategic Master 2",
-    text: "A mind like no other, capable of devising unmatched strategies.",
+    image:
+      "https://battlebots.com/wp-content/uploads/2019/05/Sawblaze-Team-S2019.jpg",
+    title: "⚙️ Jamison Go – SawBlaze",
+    text: "Precision-driven and cool under pressure, Jamison’s surgical strikes set him apart.",
   },
   {
-    image: Person1,
-    title: "Strategic Master 3",
-    text: "A mind like no other, capable of devising unmatched strategies.",
+    image:
+      "https://battlebots.com/wp-content/uploads/2021/10/MadCatter-Team-2021.jpg",
+    title: "🧠 Martin Mason – MadCatter",
+    text: "The showman of the sport. Wild energy, unpredictable tactics—MadCatter matches his personality.",
   },
   {
-    image: Person1,
-    title: "Strategic Master 4",
-    text: "A mind like no other, capable of devising unmatched strategies.",
-  },
-  {
-    image: Person1,
-    title: "Strategic Master 5",
-    text: "A mind like no other, capable of devising unmatched strategies.",
-  },
-  {
-    image: Person1,
-    title: "Strategic Master 6",
-    text: "A mind like no other, capable of devising unmatched strategies.",
+    image:
+      "https://battlebots.com/wp-content/uploads/2019/05/Minotaur-Team-S2019.jpg",
+    title: "🐉 Marco Antonio Meggiolaro – Minotaur",
+    text: "Brazilian fire and grit. Marco’s relentless drum spinner shows no fear, no hesitation",
   },
 ];
 

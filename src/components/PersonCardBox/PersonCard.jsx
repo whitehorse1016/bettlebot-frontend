@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Person1 from "../../assets/images/person1.png";
 const PersonCard = ({ image, title, text, onClick }) => {
   return (
     <PersonCardBorderWrapper onClick={onClick}>
@@ -31,7 +30,6 @@ const PersonCardNewBorderWrapper = styled.div`
   width: 100%;
 `;
 const PersonCardWrapper = styled.div`
-  display: flex;
   flex-direction: column;
   background: #191919;
   height: 100%;
@@ -43,9 +41,10 @@ const PersonCardWrapper = styled.div`
 `;
 const PersonCardImageWrapper = styled.div`
   width: 280px;
-  height: 270px;
+  max-height: 270px;
+  height: 100%;
   border-radius: 4px;
-  background: url(${Person1});
+  background: ${(props) => props.image && `url(${props.image})`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -53,10 +52,14 @@ const PersonCardImageWrapper = styled.div`
 
 const PersonCardTitle = styled.div`
   font-family: "aquire";
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
+  margin-top: 10px;
 `;
 
-const PersonCardText = styled.div``;
+const PersonCardText = styled.div`
+  font-size: 14px;
+  text-align: center;
+`;
 
 export default PersonCard;
