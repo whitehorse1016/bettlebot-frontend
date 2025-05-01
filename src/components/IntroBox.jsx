@@ -67,23 +67,19 @@ const IntroBox = () => {
             <AddressPart>
               <AddressText>{address}</AddressText>
               <CopyIconWrapper onClick={() => handleCopy(address)}>
-                {flag === false ? (
-                  <IoCopy />
-                ) : (
-                  <TbCopyCheckFilled />
-                )}
+                {flag === false ? <IoCopy /> : <TbCopyCheckFilled />}
               </CopyIconWrapper>
             </AddressPart>
           )}
 
-          <Title>Unleash the $Cock!</Title>
+          <Title>UNLEASH THE $BETTLE! </Title>
           <Text>
-            The ultimate betting experience has arrived. Back your fighters,
-            place your bets, and win big with the power of $Cock! Whether you're
-            a casual fan or a seasoned bettor, this is your chance to engage
-            like never before. Set up your wallet, join the live streams, and
-            get ready to take your stake in the fight. It’s time to let loose,
-            bet with confidence, and Unleash the $Cock!
+            The ultimate bot betting experience has arrived. Back your fighters,
+            place your bets, and win big with the power of $BETTLE! Whether
+            you’re a casual fan or a seasoned bettor, this is your chance to
+            engage like never before. Set up your wallet, join the live streams,
+            and get ready to stake your claim in the arena. Bet bold, bet smart
+            — Unleash the $BETTLE!
           </Text>
           {windowSize.width < 850 && (
             <AddressPart>
@@ -91,18 +87,14 @@ const IntroBox = () => {
                 {windowSize.width > 600
                   ? address
                   : windowSize.width > 460
-                    ? shortenAddress(address, 16, 16)
-                    : shortenAddress(address, 10, 10)}
+                  ? shortenAddress(address, 16, 16)
+                  : shortenAddress(address, 10, 10)}
                 {/* {windowSize.width < 560 && windowSize.width > 430
                   ? shortenAddress(address, 16, 16)
                   : shortenAddress(address, 10, 10)} */}
               </AddressText>
-              <CopyIconWrapper onClick={() => handleCopy(address)} >
-                {flag === false ? (
-                  <IoCopy />
-                ) : (
-                  <TbCopyCheckFilled />
-                )}
+              <CopyIconWrapper onClick={() => handleCopy(address)}>
+                {flag === false ? <IoCopy /> : <TbCopyCheckFilled />}
               </CopyIconWrapper>
             </AddressPart>
           )}
