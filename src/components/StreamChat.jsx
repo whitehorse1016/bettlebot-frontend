@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import styled from "styled-components";
 import io from "socket.io-client";
-import StreamUserIcon from "../assets/images/blue.png";
+import StreamUserIcon from "../assets/images/cocklogo.png";
 import AdminButton from "./AdminButton";
 import { IoSend } from "react-icons/io5";
 import { UserContext } from "../context/UserContext";

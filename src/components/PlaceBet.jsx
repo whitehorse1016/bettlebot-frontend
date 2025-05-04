@@ -18,7 +18,7 @@ const PlaceBet = (props) => {
   const { currentBet, betFlag, setBetFlag } = useBets();
   const { userid, totalbalance, refresh, updateRefresh } =
     useContext(UserContext);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const [balance, setBalance] = useState(0);
   const [comfirm, setComfirm] = useState(false);
@@ -27,7 +27,6 @@ const PlaceBet = (props) => {
     if (PercentData[key] == 100) {
       setBalance((totalbalance * 98) / 100);
     } else {
-
       setBalance((totalbalance * PercentData[key]) / 100);
     }
     setCurrentIndex(key);
@@ -75,12 +74,12 @@ const PlaceBet = (props) => {
       toast.warning("Your Bet is processing");
       return;
     }
-    setComfirm(true)
-  }
+    setComfirm(true);
+  };
 
   const handlePlaceBet = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       if (
         currentBet !== undefined &&
         currentBet !== null &&
@@ -101,21 +100,19 @@ const PlaceBet = (props) => {
         updateRefresh(!refresh);
         setBetFlag(props.teamId);
         toast.success("You placed Bet");
-        setLoading(false)
-        setComfirm(false)
-
+        setLoading(false);
+        setComfirm(false);
       }
     } catch (error) {
       setBetFlag(2);
-      setComfirm(false)
-      setLoading(false)
+      setComfirm(false);
+      setLoading(false);
 
       console.log(error);
     }
   };
 
   const handleBalanceChange = (e) => {
-
     setBalance(e.target.value);
   };
 
@@ -180,30 +177,40 @@ const PlaceBet = (props) => {
         </BalanceWrapper>
       </PercentBoxWrapper>
       <ButtonWrapper>
-        {loading == true ? <Button
-          padding={"12px"}
-          fsize={"18px"}
-          border={""}
-          maxwidth={"310px"}
-          bgcolor={(currentBet?.status != "open") && "rgb(163 ,108, 105,0.13)"}
-          color={(currentBet?.status != "open") && "rgb(255,255,255,0.2)"}
-        >
-          BET IS PROCESSING
-        </Button> : <Button
-          padding={"12px"}
-          fsize={"18px"}
-          border={""}
-          maxwidth={"310px"}
-          onClick={handleOpenModal}
-          bgcolor={(currentBet?.status != "open") && "rgb(163 ,108, 105,0.13)"}
-          color={(currentBet?.status != "open") && "rgb(255,255,255,0.2)"}
-        >
-          PLACE A BET
-        </Button>
-        }
-
+        {loading == true ? (
+          <Button
+            padding={"12px"}
+            fsize={"18px"}
+            border={""}
+            maxwidth={"310px"}
+            bgcolor={currentBet?.status != "open" && "rgb(163 ,108, 105,0.13)"}
+            color={currentBet?.status != "open" && "rgb(255,255,255,0.2)"}
+          >
+            BET IS PROCESSING
+          </Button>
+        ) : (
+          <Button
+            padding={"12px"}
+            fsize={"18px"}
+            border={""}
+            maxwidth={"310px"}
+            onClick={handleOpenModal}
+            bgcolor={currentBet?.status != "open" && "rgb(163 ,108, 105,0.13)"}
+            color={currentBet?.status != "open" && "rgb(255,255,255,0.2)"}
+          >
+            PLACE A BET
+          </Button>
+        )}
       </ButtonWrapper>
-      <ComfirmModalBar open={comfirm} setOpen={setComfirm} handlePlaceBet={handlePlaceBet} loading={loading} setLoading={setLoading} balance={balance} team={props.team} />
+      <ComfirmModalBar
+        open={comfirm}
+        setOpen={setComfirm}
+        handlePlaceBet={handlePlaceBet}
+        loading={loading}
+        setLoading={setLoading}
+        balance={balance}
+        team={props.team}
+      />
     </PlaceBetWrapper>
   );
 };
