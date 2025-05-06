@@ -57,7 +57,7 @@ const BetDashboard = () => {
   };
 
   useEffect(() => {
-    document.title = "BettleBotss - Bets";
+    document.title = "BettleBots - Bets";
   }, []);
 
   useEffect(() => {

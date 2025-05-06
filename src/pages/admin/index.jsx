@@ -38,7 +38,7 @@ const Dashboard = () => {
   }, [betRefresh]);
 
   useEffect(() => {
-    document.title = "BettleBotss - Admin";
+    document.title = "BettleBots - Admin";
   }, []);
 
   return (
