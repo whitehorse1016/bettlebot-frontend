@@ -35,7 +35,7 @@ const PersonCardBox = () => {
         <PersonCardBoxImage src={RightImg} />
       </PersonCardBoxTitleWrapper>
       <PersonCardBoxText>
-        All cocks went through a rigorous training
+        All bettle went through a rigorous training
       </PersonCardBoxText>
       <Slider
         itemsToShow={
