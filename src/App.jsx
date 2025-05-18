@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/adminpanel",
+    path: "/admins",
     element: (
       <ProtectedRoute>
         <AdminView />
