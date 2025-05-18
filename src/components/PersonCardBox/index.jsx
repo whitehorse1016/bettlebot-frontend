@@ -29,7 +29,7 @@ const PersonCardBox = () => {
       <PersonCardBoxTitleWrapper>
         <PersonCardBoxImage src={LeftImg} />
         <PersonCardBoxTitle>
-          Discover Cock
+          Discover BETTLE
           <PersonCardBoxTitleYellow> Trainers</PersonCardBoxTitleYellow>
         </PersonCardBoxTitle>
         <PersonCardBoxImage src={RightImg} />
