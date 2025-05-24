@@ -99,7 +99,7 @@ const PlaceBet = (props) => {
 
         updateRefresh(!refresh);
         setBetFlag(props.teamId);
-        toast.success("You placed Bet");
+        toast.success("You placed Vote");
         setLoading(false);
         setComfirm(false);
       }
@@ -144,7 +144,7 @@ const PlaceBet = (props) => {
           icon={<SiSolana />}
           iconwidth="14px"
           iconheight="14px"
-          text="SOLANA"
+          text="BETTLE"
           fweight="400"
           fsize="12px"
           padding="12px"
@@ -172,7 +172,7 @@ const PlaceBet = (props) => {
         <BalanceWrapper>
           <BalanceText>Bal</BalanceText>
           <BalanceNumber>
-            {totalbalance && totalbalance.toFixed(3)} SOL
+            {totalbalance && totalbalance.toFixed(3)} BETTLE
           </BalanceNumber>
         </BalanceWrapper>
       </PercentBoxWrapper>
@@ -198,7 +198,7 @@ const PlaceBet = (props) => {
             bgcolor={currentBet?.status != "open" && "rgb(163 ,108, 105,0.13)"}
             color={currentBet?.status != "open" && "rgb(255,255,255,0.2)"}
           >
-            PLACE A BET
+            PLACE A VOTE
           </Button>
         )}
       </ButtonWrapper>

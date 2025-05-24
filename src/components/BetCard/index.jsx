@@ -16,7 +16,7 @@ const BetCard = ({ bet }) => {
   const { betRefresh, updateBetRefresh, currentBet } = useBets();
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
-  console.log(currentBet, "currentBet")
+  console.log(currentBet, "currentBet");
   const handleStart = async () => {
     try {
       if (bet.liveUrl === null) {
@@ -29,18 +29,18 @@ const BetCard = ({ bet }) => {
         liveUrl: bet.liveUrl,
         token: token,
       });
-      toast.success("Bet Started");
+      toast.success("Vote Started");
       updateBetRefresh(!betRefresh);
     } catch (error) {
-      toast.error("Bet Starting Failed");
+      toast.error("Vote Starting Failed");
       console.log(error);
     }
   };
 
   const handleFinish = async () => {
     if (currentBet?.status !== "closed") {
-      toast.warning('Please Close Bet First');
-      return
+      toast.warning("Please Close Vote First");
+      return;
     }
     setLoading(true);
     try {
@@ -54,15 +54,13 @@ const BetCard = ({ bet }) => {
         winningTeamId: bet.winningTeamId,
         token: token,
       });
-      toast.success("Bet Finished");
+      toast.success("Vote Finished");
       updateBetRefresh(!betRefresh);
       setLoading(false);
-
     } catch (error) {
-      toast.error("Bet Finishing Failed");
+      toast.error("Vote Finishing Failed");
       console.log(error);
       setLoading(false);
-
     }
   };
   const handleClose = async () => {
@@ -106,30 +104,33 @@ const BetCard = ({ bet }) => {
             bgcolor="#039823"
             color="white"
             width="110px"
-            text="Start Bet"
+            text="Start Vote"
             fweight="500"
             onClick={handleStart}
           />
-          {loading == false ? <AdminButton
-            bgcolor="#005BBF"
-            color="white"
-            width="110px"
-            text="Finish Bet"
-            fweight="500"
-            onClick={handleFinish}
-          /> : <AdminButton
-            bgcolor="#005BBF"
-            color="white"
-            width="180px"
-            text="Bet is Processing ..."
-            fweight="500"
-          />
-          }
+          {loading == false ? (
+            <AdminButton
+              bgcolor="#005BBF"
+              color="white"
+              width="110px"
+              text="Finish Vote"
+              fweight="500"
+              onClick={handleFinish}
+            />
+          ) : (
+            <AdminButton
+              bgcolor="#005BBF"
+              color="white"
+              width="180px"
+              text="Vote is Processing ..."
+              fweight="500"
+            />
+          )}
           <AdminButton
             bgcolor="#980312"
             color="white"
             width="110px"
-            text="Close Bet"
+            text="Close Vote"
             fweight="500"
             onClick={handleClose}
           />

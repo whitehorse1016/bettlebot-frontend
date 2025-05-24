@@ -6,24 +6,9 @@ import XIcon from "../assets/images/twitter.png";
 
 const socialData = [
   {
-    icon: PumpIcon,
-    title: "Pump",
-    href: "/",
-  },
-  {
-    icon: DexIcon,
-    title: "DexScreener",
-    href: "/",
-  },
-  {
-    icon: TgIcon,
-    title: "Telegram",
-    href: "/",
-  },
-  {
     icon: XIcon,
     title: "Twitter",
-    href: "/",
+    href: "https://x.com",
   },
 ];
 

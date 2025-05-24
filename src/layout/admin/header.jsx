@@ -8,7 +8,7 @@ const Header = () => {
         <HeaderTitle>Admin dashboard</HeaderTitle>
         <HeaderBarWrapper>
           <HeaderText>View Users</HeaderText>
-          <HeaderText>Bets</HeaderText>
+          <HeaderText>VOTE</HeaderText>
           <HeaderBarImg src={Admin} />
         </HeaderBarWrapper>
       </HeaderContainer>

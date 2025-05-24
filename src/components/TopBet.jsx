@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 import { getTopBet } from "../services/bet.service";
 
 const TopBet = () => {
-
-  const [topdata, setTopData] = useState([])
+  const [topdata, setTopData] = useState([]);
 
   const fetchTopData = async () => {
     try {
@@ -20,15 +19,15 @@ const TopBet = () => {
         data.push({ name: "Red", balance: getdata.TopRedTeam });
         data.push({ name: "Blue", balance: getdata.TopBlueTeam });
       }
-      setTopData(data)
+      setTopData(data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchTopData()
-  }, [])
+    fetchTopData();
+  }, []);
 
   return (
     <TopBetWrapper>
@@ -36,19 +35,26 @@ const TopBet = () => {
         <TopBetBoxIcon>
           <RiCircleFill />
         </TopBetBoxIcon>
-        <TopBetBoxTitle>Top Bets</TopBetBoxTitle>
+        <TopBetBoxTitle>Top Votes</TopBetBoxTitle>
       </TopBetBox>
       <TextMarqueeWrapper>
-        {topdata.length > 0 && topdata.map((item, key) => {
-          return (
-            <TopBetTextWrapper key={key}>
-              <TopBetTextIcon>
-                <RiCircleFill />
-              </TopBetTextIcon>
-              <TopBetText>{item.name} team: {item.balance.toString().length > 6 ? item.balance.toFixed(5) : item.balance} SOL</TopBetText>
-            </TopBetTextWrapper>
-          );
-        })}
+        {topdata.length > 0 &&
+          topdata.map((item, key) => {
+            return (
+              <TopBetTextWrapper key={key}>
+                <TopBetTextIcon>
+                  <RiCircleFill />
+                </TopBetTextIcon>
+                <TopBetText>
+                  {item.name} team:{" "}
+                  {item.balance.toString().length > 6
+                    ? item.balance.toFixed(5)
+                    : item.balance}{" "}
+                  BETTLE
+                </TopBetText>
+              </TopBetTextWrapper>
+            );
+          })}
       </TextMarqueeWrapper>
     </TopBetWrapper>
   );

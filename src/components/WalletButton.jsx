@@ -15,8 +15,7 @@ import bs58 from "bs58";
 import { IoCopy } from "react-icons/io5";
 import clipboardCopy from "clipboard-copy";
 import LogoutComponent from "./Auth/logout";
-import { Tooltip } from 'react-tooltip'
-
+import { Tooltip } from "react-tooltip";
 
 const WalletButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -101,8 +100,6 @@ const WalletButton = () => {
   };
 
   const handleCopy = (text) => {
-
-
     clipboardCopy(text)
       .then(() => {
         toast.info("Text Copied");
@@ -173,18 +170,28 @@ const WalletButton = () => {
                 {!flag2 ? (
                   <TitleBar>
                     <Title>Total Balance</Title>{" "}
-                    <IoMdEye onClick={handleGetPrivate} className="my-anchor-element" />
-                    <Tooltip anchorSelect=".my-anchor-element" place="top">Show Private Key</Tooltip>
+                    <IoMdEye
+                      onClick={handleGetPrivate}
+                      className="my-anchor-element"
+                    />
+                    <Tooltip anchorSelect=".my-anchor-element" place="top">
+                      Show Private Key
+                    </Tooltip>
                   </TitleBar>
                 ) : (
                   <TitleBar>
                     <Title>Private Key</Title>{" "}
-                    <IoMdEyeOff onClick={handleRemove} className="my-anchor-element2" />
-                    <Tooltip anchorSelect=".my-anchor-element2" place="top">Hide private key</Tooltip>
+                    <IoMdEyeOff
+                      onClick={handleRemove}
+                      className="my-anchor-element2"
+                    />
+                    <Tooltip anchorSelect=".my-anchor-element2" place="top">
+                      Hide private key
+                    </Tooltip>
                   </TitleBar>
                 )}
                 {!flag2 ? (
-                  <Balance>{totalbalance && totalbalance} SOL</Balance>
+                  <Balance>{totalbalance && totalbalance} BETTLE</Balance>
                 ) : (
                   <PrivatekeyBar>{privatekey && privatekey}</PrivatekeyBar>
                 )}
@@ -409,7 +416,7 @@ const PNL = styled.div`
   font-size: 12px;
   color: #888;
   span {
-    color: ${props => props.color && props.color};
+    color: ${(props) => props.color && props.color};
   }
 `;
 

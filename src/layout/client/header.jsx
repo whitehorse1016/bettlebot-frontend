@@ -53,12 +53,12 @@ const Header = () => {
               <AdminButton
                 bgcolor="#980312"
                 color="white"
-                width="110px"
+                width="150px"
                 text={`${
                   totalbalance.toString().length > 3
                     ? totalbalance.toFixed(3)
                     : totalbalance
-                } SOL`}
+                } BETTLE`}
                 fweight="500"
               />
             </MobileBalanceWrapper>

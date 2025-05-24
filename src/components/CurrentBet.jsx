@@ -19,7 +19,6 @@ const CurrentBet = (props) => {
   const [userImages, setUserImages] = useState({});
   const [checkWinner, setCheckWinner] = useState([]);
 
-
   const fetchBetHistory = async () => {
     if (
       currentBet !== undefined &&
@@ -40,23 +39,26 @@ const CurrentBet = (props) => {
       if (response.length > 0) {
         if (currentBet.status == "finished") {
           const winner = [];
-          response.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(item => {
-            if (item.teamId == currentBet.winningTeamId) {
-              winner.push({
-                winner: true,
-                balance: (
-                  (item.amount *
-                    (currentBet.teams.filter(
+          response
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map((item) => {
+              if (item.teamId == currentBet.winningTeamId) {
+                winner.push({
+                  winner: true,
+                  balance: (
+                    item.amount *
+                    ((currentBet.teams.filter(
                       (itemdata) => itemdata._id == currentBet.winningTeamId
-                    )[0].multiplier * 99 / 100
-                    )).toFixed(4))
-              })
-            } else {
-              winner.push({ winner: false, balance: item.amount })
-            }
-
-          })
-          setCheckWinner(winner)
+                    )[0].multiplier *
+                      99) /
+                      100)
+                  ).toFixed(4),
+                });
+              } else {
+                winner.push({ winner: false, balance: item.amount });
+              }
+            });
+          setCheckWinner(winner);
         }
 
         const userIds = response.map((item) => ({
@@ -73,10 +75,11 @@ const CurrentBet = (props) => {
           const newImages = {};
           data.userInfoData.forEach((user) => {
             if (!userImages[user.username]) {
-              newImages[user.username] = Math.random() < 0.5 ? UserImg : UserImg2;
+              newImages[user.username] =
+                Math.random() < 0.5 ? UserImg : UserImg2;
             }
           });
-          setUserImages(prevImages => ({ ...prevImages, ...newImages }));
+          setUserImages((prevImages) => ({ ...prevImages, ...newImages }));
           data.userInfoData.map((item) => (total += item.amount));
           setTotalAmount(total.toFixed(3));
           if (username !== null) {
@@ -96,36 +99,43 @@ const CurrentBet = (props) => {
     fetchBetHistory();
   }, [currentBet, username, refresh]);
 
-
   return (
     <CurrentBetWrapper bgcolor={props.bgcolor} color={props.color}>
       <CurrentBetTitle color={props.color}>
-        Bets on {props.team} TEAM
+        VOTES ON {props.team} TEAM
       </CurrentBetTitle>
       <CurrentBetBalanceWrapper color={props.color}>
         <CurrentBetBalanceGroup>
-          <CurrentBetBalanceText>Your Bet</CurrentBetBalanceText>
+          <CurrentBetBalanceText>Your Vote</CurrentBetBalanceText>
           <IconText
             width="18px"
             height="18px"
             icon={<SiSolana />}
             iconwidth="10px"
             iconheight="10px"
-            text={`${myBetAmount.toString().length > 10 ? myBetAmount.toFixed(6) : myBetAmount} SOL`}
+            text={`${
+              myBetAmount.toString().length > 10
+                ? myBetAmount.toFixed(6)
+                : myBetAmount
+            } BETTLE `}
             fweight="500"
             fsize="12px"
           />
         </CurrentBetBalanceGroup>
         <CurrentBetBalanceHr color={props.color} />
         <CurrentBetBalanceGroup>
-          <CurrentBetBalanceText>Users Bet</CurrentBetBalanceText>
+          <CurrentBetBalanceText>Users Vote</CurrentBetBalanceText>
           <IconText
             width="18px"
             height="18px"
             icon={<SiSolana />}
             iconwidth="10px"
             iconheight="10px"
-            text={`${totalAmount.toString().length > 10 ? totalAmount.toFixed(6) : totalAmount} SOL`}
+            text={`${
+              totalAmount.toString().length > 10
+                ? totalAmount.toFixed(6)
+                : totalAmount
+            } BETTLE `}
             fweight="500"
             fsize="12px"
           />
@@ -154,12 +164,29 @@ const CurrentBet = (props) => {
                   icon={<SiSolana />}
                   iconwidth="10px"
                   iconheight="10px"
-                  pretext={`${currentBet.status == "finished" ? (checkWinner[key]?.winner == true ? "+ " : "- ") + (checkWinner[key]?.balance.toString().length > 3 ? Number(checkWinner[key]?.balance).toFixed(2) : checkWinner[key]?.balance) : ""}`}
-                  text={`${item.amount.toString().length > 10 ? item.amount.toFixed(6) : item.amount} SOL`}
+                  pretext={`${
+                    currentBet.status == "finished"
+                      ? (checkWinner[key]?.winner == true ? "+ " : "- ") +
+                        (checkWinner[key]?.balance.toString().length > 3
+                          ? Number(checkWinner[key]?.balance).toFixed(2)
+                          : checkWinner[key]?.balance)
+                      : ""
+                  }`}
+                  text={`${
+                    item.amount.toString().length > 10
+                      ? item.amount.toFixed(6)
+                      : item.amount
+                  } BETTLE `}
                   fweight="500"
                   fsize="12px"
                   gap="10px"
-                  color={currentBet.status == "finished" ? checkWinner[key]?.winner == true ? "#008000" : "#980312" : "white"}
+                  color={
+                    currentBet.status == "finished"
+                      ? checkWinner[key]?.winner == true
+                        ? "#008000"
+                        : "#980312"
+                      : "white"
+                  }
                 />
               </CurrentBetHistory>
             ))}
