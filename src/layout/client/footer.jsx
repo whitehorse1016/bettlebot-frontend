@@ -25,6 +25,7 @@ const Footer = () => {
             or payouts. Entertainment use only.
           </DisclaimerWrapper>
         </FooterItem>
+        <FooterItem>hello@bettlebots.com</FooterItem>
         <FooterItem>
           <FooterText>© BETTLEBOTS 2025</FooterText>
         </FooterItem>
