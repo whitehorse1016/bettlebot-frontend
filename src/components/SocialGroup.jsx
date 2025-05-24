@@ -8,7 +8,7 @@ const socialData = [
   {
     icon: XIcon,
     title: "Twitter",
-    href: "https://x.com",
+    href: "https://x.com/bettle_bots",
   },
 ];
 
