@@ -100,7 +100,7 @@ const BetDashboard = () => {
       //   }
       // }
       if (currentBet.status && notifiedStatus !== currentBet.status) {
-        toast.info("Votes are " + currentBet.status);
+        toast.info("Bets are " + currentBet.status);
         setNotifiedStatus(currentBet.status);
       }
     }
@@ -154,10 +154,10 @@ const BetDashboard = () => {
                 checkWinner &&
                 checkWinner?.amount > 0
                   ? checkWinner?.winner == false
-                    ? "You lost " + checkWinner.amount + " BETTLE"
-                    : "You Won " + checkWinner.amount + " BETTLE"
+                    ? "You lost " + checkWinner.amount + " SOL"
+                    : "You Won " + checkWinner.amount + " SOL"
                   : currentBet?.status
-                  ? "Votes are " + currentBet?.status
+                  ? "Bets are " + currentBet?.status
                   : ""}
               </Status>
             </BetPlaceGroup>
@@ -186,8 +186,8 @@ const BetDashboard = () => {
                 checkWinner &&
                 checkWinner.amount > 0
                   ? checkWinner.winner == false
-                    ? "You lost " + checkWinner.amount + " BETTLE"
-                    : "You Won " + checkWinner.amount + " BETTLE"
+                    ? "You lost " + checkWinner.amount + " SOL"
+                    : "You Won " + checkWinner.amount + " SOL"
                   : currentBet?.status}
               </Status>
             )}
@@ -208,8 +208,8 @@ const BetDashboard = () => {
             checkWinner &&
             checkWinner.amount > 0
               ? checkWinner.winner == false
-                ? "You lost " + checkWinner.amount + " BETTLE"
-                : "You Won " + checkWinner.amount + " BETTLE"
+                ? "You lost " + checkWinner.amount + " SOL"
+                : "You Won " + checkWinner.amount + " SOL"
               : currentBet?.status}
           </Status>
         )}

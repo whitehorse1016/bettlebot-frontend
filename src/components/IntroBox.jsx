@@ -33,7 +33,7 @@ const IntroBox = () => {
 
   const handlePlaceBet = async () => {
     try {
-      navigate("/play");
+      navigate("/bet");
     } catch (error) {
       console.log(error);
     }
@@ -63,25 +63,20 @@ const IntroBox = () => {
           <IntroBanner src={IntroBannerImg} alt="Introduce Banner" />
         )}
         <IntroContainer>
-          {/* {windowSize.width > 850 && (
+          {windowSize.width > 850 && (
             <AddressPart>
               <AddressText>{address}</AddressText>
               <CopyIconWrapper onClick={() => handleCopy(address)}>
                 {flag === false ? <IoCopy /> : <TbCopyCheckFilled />}
               </CopyIconWrapper>
             </AddressPart>
-          )} */}
+          )}
 
           <Title>UNLEASH THE $BETTLE! </Title>
           <Text>
-            The ultimate bot battle simulation is here. Choose your champions,
-            make your predictions, and experience the power of $BETTLE in the
-            arena. Whether you're a casual player or a competitive tactician,
-            this is your chance to engage like never before. Set up your wallet,
-            join the live streams, and take your position in the arena. Play
-            smart, play bold — unleash the $BETTLE!
+          The ultimate bot betting experience has arrived. Back your fighters, place your bets, and win big with the power of $BETTLE! Whether you’re a casual fan or a seasoned bettor, this is your chance to engage like never before. Set up your wallet, join the live streams, and get ready to stake your claim in the arena. Bet bold, bet smart — Unleash the $BETTLE!
           </Text>
-          {/* {windowSize.width < 850 && (
+          {windowSize.width < 850 && (
             <AddressPart>
               <AddressText>
                 {windowSize.width > 600
@@ -94,7 +89,7 @@ const IntroBox = () => {
                 {flag === false ? <IoCopy /> : <TbCopyCheckFilled />}
               </CopyIconWrapper>
             </AddressPart>
-          )} */}
+          )}
           <ButtonWrapper>
             <Button
               padding={"16px"}
@@ -107,7 +102,7 @@ const IntroBox = () => {
               }
               onClick={handlePlaceBet}
             >
-              PLAY NOW!
+              PLACE A BET!
             </Button>
           </ButtonWrapper>
         </IntroContainer>

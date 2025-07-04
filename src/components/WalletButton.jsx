@@ -191,7 +191,7 @@ const WalletButton = () => {
                   </TitleBar>
                 )}
                 {!flag2 ? (
-                  <Balance>{totalbalance && totalbalance} BETTLE</Balance>
+                  <Balance>{totalbalance && totalbalance} SOL</Balance>
                 ) : (
                   <PrivatekeyBar>{privatekey && privatekey}</PrivatekeyBar>
                 )}

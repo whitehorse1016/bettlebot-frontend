@@ -102,7 +102,7 @@ const CurrentBet = (props) => {
   return (
     <CurrentBetWrapper bgcolor={props.bgcolor} color={props.color}>
       <CurrentBetTitle color={props.color}>
-        VOTES ON {props.team} TEAM
+        BETS ON {props.team} TEAM
       </CurrentBetTitle>
       <CurrentBetBalanceWrapper color={props.color}>
         <CurrentBetBalanceGroup>
@@ -117,7 +117,7 @@ const CurrentBet = (props) => {
               myBetAmount.toString().length > 10
                 ? myBetAmount.toFixed(6)
                 : myBetAmount
-            } BETTLE `}
+            } SOL `}
             fweight="500"
             fsize="12px"
           />
@@ -135,7 +135,7 @@ const CurrentBet = (props) => {
               totalAmount.toString().length > 10
                 ? totalAmount.toFixed(6)
                 : totalAmount
-            } BETTLE `}
+            } SOL `}
             fweight="500"
             fsize="12px"
           />
@@ -176,7 +176,7 @@ const CurrentBet = (props) => {
                     item.amount.toString().length > 10
                       ? item.amount.toFixed(6)
                       : item.amount
-                  } BETTLE `}
+                  } SOL `}
                   fweight="500"
                   fsize="12px"
                   gap="10px"

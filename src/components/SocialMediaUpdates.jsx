@@ -8,7 +8,7 @@ const SocialMediaUpdates = () => {
 
   const handlePlaceBet = async () => {
     try {
-      navigate("/play");
+      navigate("/bet");
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +30,7 @@ const SocialMediaUpdates = () => {
           maxwidth={"300px"}
           onClick={handlePlaceBet}
         >
-          PLAY NOW!
+          PLACE A BET!
         </Button>
       </UpdatesContainer>
     </UpdatesWrapper>

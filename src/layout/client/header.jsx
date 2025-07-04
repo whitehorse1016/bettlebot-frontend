@@ -58,7 +58,7 @@ const Header = () => {
                   totalbalance.toString().length > 3
                     ? totalbalance.toFixed(3)
                     : totalbalance
-                } BETTLE`}
+                } SOL`}
                 fweight="500"
               />
             </MobileBalanceWrapper>

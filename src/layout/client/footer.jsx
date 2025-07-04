@@ -19,11 +19,11 @@ const Footer = () => {
           </FooterText>
         </FooterItem>
         <FooterItem>
-          <DisclaimerWrapper>
+          {/* <DisclaimerWrapper>
             BettleBots is a fictional, game-based simulation. $BETTLE is a
             utility token used for in-game interaction. No real-world wagering
             or payouts. Entertainment use only.
-          </DisclaimerWrapper>
+          </DisclaimerWrapper> */}
         </FooterItem>
         <FooterItem>hello@bettlebots.com</FooterItem>
         <FooterItem>

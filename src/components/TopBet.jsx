@@ -50,7 +50,7 @@ const TopBet = () => {
                   {item.balance.toString().length > 6
                     ? item.balance.toFixed(5)
                     : item.balance}{" "}
-                  BETTLE
+                  SOL
                 </TopBetText>
               </TopBetTextWrapper>
             );

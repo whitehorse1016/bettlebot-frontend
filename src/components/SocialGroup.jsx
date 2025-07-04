@@ -10,6 +10,11 @@ const socialData = [
     title: "Twitter",
     href: "https://x.com/bettle_bots",
   },
+  {
+    icon: DexIcon,
+    title: "Dexscreener",
+    href: "https://x.com/bettle_bots",
+  },
 ];
 
 const SocialGroup = ({ gap, background, border }) => {
