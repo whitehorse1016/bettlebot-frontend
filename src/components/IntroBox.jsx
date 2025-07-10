@@ -11,7 +11,7 @@ import clipboardCopy from "clipboard-copy";
 
 const IntroBox = () => {
   const navigate = useNavigate();
-  const address = "3L2Y1D5ksP2d3CsVaA47c3yJhNhKZdq2ifLz5UAc8fsc";
+  const address = "3L2Y1D5ksP2d3CsVaA47c3yJhNhKZdq2ifLz5UAc1351";
   const [flag, setFlag] = useState(false);
 
   const [windowSize, setWindowSize] = useState({
