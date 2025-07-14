@@ -13,7 +13,7 @@ const socialData = [
   {
     icon: DexIcon,
     title: "Dexscreener",
-    href: "https://x.com/bettle_bots",
+    href: "https://dexscreener.com/solana/",
   },
 ];
 
