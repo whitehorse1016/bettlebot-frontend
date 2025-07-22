@@ -18,6 +18,21 @@ export const createNewWallet = async (payload) => {
   return response.data;
 };
 
+export const deleteWallet = async (payload) => {
+  const response = await axios.delete(`${endpoint}/api/users/deleteWallet`, {
+    headers: { authorization: payload.token },
+    data: { walletId: payload.walletId }, // if backend expects a body
+  });
+  return response.data;
+};
+
+export const updateWallet = async (payload) => {
+  const response = await axios.put(`${endpoint}/api/users/updateWallet`, payload.data, {
+    headers: { authorization: payload.token },
+  });
+  return response.data;
+};
+
 export const getUserInfo = async (payload) => {
   const response = await axios.get(`${endpoint}/api/users/getuserinfo`, {
     headers: { authorization: payload.token },
